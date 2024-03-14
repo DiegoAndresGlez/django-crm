@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-PASS = os.getenv('PASSWORD')
+PASS = os.getenv('PASS')
 
 dataBase = mysql.connector.connect(
     host = 'localhost',
