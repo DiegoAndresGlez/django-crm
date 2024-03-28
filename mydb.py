@@ -11,19 +11,20 @@ import mysql.connector
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-PASS = os.getenv('PASS')
+load_dotenv(dotenv_path='dcrm/.env')
+MYSQL_ROOT_PASSWORD = os.getenv('MYSQL_ROOT_PASSWORD')
 
 dataBase = mysql.connector.connect(
     host = 'localhost',
     user = 'root',
-    passwd = PASS,
+    passwd = MYSQL_ROOT_PASSWORD,
+    auth_plugin='mysql_native_password',
 )
 
 # prepare a cursor object
 cursorObject = dataBase.cursor()
 
 # create a database
-cursorObject.execute("CREATE DATABASE humaninstrumentality")
+cursorObject.execute("CREATE DATABASE dcrm_db")
 
 print("Database created successfully...")
