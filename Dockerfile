@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -25,8 +25,8 @@ RUN apt install -y libmysqlclient-dev
 # Copy the dependencies file to the working directory
 COPY requirements.txt /app/
 
-RUN python3 -m venv virt
-RUN . virt/bin/activate
+#RUN python3 -m venv virt
+#RUN . virt/bin/activate
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . /app/
@@ -35,9 +35,9 @@ RUN chmod 775 /app
 RUN chmod 775 /app/dcrm
 RUN chmod 775 /app/dcrm/wsgi.py
 
-RUN a2enmod rewrite
-RUN a2ensite django.conf
-RUN a2dissite 000-default
+#RUN a2enmod rewrite
+RUN a2ensite 000-default.conf
+#RUN a2dissite 000-default
 
 EXPOSE 80
 #EXPOSE 80 8000
